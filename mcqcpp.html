@@ -1,0 +1,364 @@
+<html>
+
+<script src="https://code.responsivevoice.org/responsivevoice.js"> </script>
+<script src="https://cdn.jsdelivr.net/jquery/2.2.1/jquery.min.js"> </script>
+
+
+<ul>
+
+
+    <style>
+        .header {
+            width: 100%;
+            height: 80px;
+            background-color: black;
+            Color: white;
+            padding-top: 5px;
+        }
+
+        .menu {
+            width: 100%;
+            height: 60px;
+            background-color: 545552;
+            padding-top: 5px;
+            Clear: both;
+        }
+
+        .content1 {
+            width: 100%;
+            height: 50px;
+            background-color: A9A9A8;
+            padding-top: 20px;
+            Clear: both;
+        }
+
+        .content2 {
+            width: 100%;
+            height: 390px;
+            background-color: E2E3E1;
+            Color: black;
+            Clear: both;
+        }
+
+        .content3 {
+            width: 100%;
+            height: 50px;
+            background-color: grey;
+            padding-top: 20px;
+            Color: black;
+            Clear: both;
+        }
+
+        .footer {
+            width: 100%;
+            height: 80px;
+            background-color: black;
+            Color: white;
+            padding-top: 5px;
+            Clear: both;
+        }
+
+        #y {
+            color: white;
+            background-color: black;
+        }
+
+        li {
+            display: inline;
+        }
+
+        a {
+            color: white;
+        }
+
+        a:hover {
+            background-color: grey;
+        }
+
+        body {
+            margin-left: -37px;
+            margin-top: 0px;
+        }
+
+
+        .button {
+            background-color: 44443F;
+            color: white;
+        }
+    </style>
+
+
+    <script>
+
+        function start() {
+
+            var m = 60, h = 01;
+            var z = setInterval(function () {
+                document.getElementById("y").innerHTML = "Time Left-" + h + ":" + m;
+                m--;
+                if (m == -1) {
+                    h--;
+                    m = 59;
+                }
+                if (h == -1) {
+                    clearInterval(z);
+                    myscore();
+                }
+            }, 1000);
+
+        }
+
+
+
+        var voicelist = responsiveVoice.getVoices();
+
+        function voiceStartCallback() {
+            console.log("Voice started");
+        }
+
+        function voiceEndCallback() {
+            console.log("Voice ended");
+        }
+
+        var parameters = {
+            onstart: voiceStartCallback,
+            onend: voiceEndCallback
+        }
+
+
+
+    </script>
+
+
+    <div class="header">
+        <center>
+            <h1><b>Multiple Choice Question</b></h1>
+        </center><input type="button" value="start" onclick="start()">
+        <p id="y"></p>
+    </div>
+
+    <div class="menu" align="center">
+        <li><a href="mcqhome.html"> <b>Home</b></a>
+        <li><a href="mcqc.html"> <b>C</b></a>
+        <li><a href="mcqcpp.html"> <b>C++</b></a>
+        <li><a href="mcqjava.html"> <b>JAVA</b></a>
+    </div>
+
+
+
+    <div class="content1" id="content1" align="center">
+        <input type="button" class="button" value="1" id="0" onclick="show1()">
+        <input type="button" class="button" value="2" id="1" onclick="show2()">
+        <input type="button" class="button" value="3" id="2" onclick="show3()">
+        <input type="button" class="button" value="4" id="3" onclick="show4()">
+        <input type="button" class="button" value="5" id="4" onclick="show5()">
+        <input type="button" class="button" value="6" id="5" onclick="show6()">
+        <input type="button" class="button" value="7" id="6" onclick="show7()">
+        <input type="button" class="button" value="8" id="7" onclick="show8()">
+        <input type="button" class="button" value="9" id="8" onclick="show9()">
+        <input type="button" class="button" value="10" id="9" onclick="show10()">
+    </div>
+
+    <div class="content2" id="content2" align="center"> <br><br><br>
+        <p id="k1"> </p>
+    </div>
+
+    <div class="content3" align="center">
+        <div id="zz">
+            <input type="button" class="button" value="previous" onclick="previous()">
+            <input type="button" class="button" value="next" onclick="next()">
+            <input type="button" class="button" value="Check Answer" onclick="showans()">
+            <input type="button" class="button" value="Finish" onclick="myscore()">
+        </div>
+    </div>
+
+    <div class="footer" align="center">
+        <h3><a href="mcqjava.html">Attempt Java Test</a></h3>
+    </div>
+
+    <script>
+
+        document.getElementById("zz").style.display = "none";
+
+    </script>
+
+
+    <script>
+        var index = 0;
+        var question = ["How many loops are there in C++?", "What following operator is called ?", "What is size of int data type in cpp?", "Which operator has more precedance in below list?", "Can we typecast void * into int *?", "Can we overload functions in C++?", "How to access and edit data in data file handling using structures?", "Which operator has highest precedence in % ?", "Which operator has highest precedence?"]
+        var opt1 = ["2", "Scope Resolution Operator", "2 Bytes", "+", "+", "Yes", "Yes", " read()", "*", "()"]
+        var opt2 = ["3", "Conditional Operator", " 4 Bytes", "-", "-", "No", "No", "write()", "/", "="]
+        var opt3 = ["4", "Ternary Operator", "1 Byte", ".", "++", "Undefined", "Compilation Error", "both A and B", "%", ""]
+        var opt4 = ["1", "if else o/p", "Depends on Compiler", "::", "*", "Depends on Compiler", "Runtime Error", "without read()", "all have same precedence", "++"]
+        var correctans = ["3", "Ternary Operator", "Depends on Compiler", "::", "++", "Yes", "Yes", "both A and B", "all have same precedence", " ()"]
+        var score = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+
+        function show1() {
+            document.getElementById(index).style.background = "yellow";
+            document.getElementById("zz").style.display = "block";
+            index = 0;
+            var question1 = document.getElementById("k1").innerHTML = "Question " + question[index] + "<br><input type='radio'name='x' id='a' value='" + opt1[index] + "'' >" + opt1[index] + "<input type='radio' name='x' id='b' value='" + opt2[index] + "'' >" + opt2[index] + "<br><input type='radio' name='x' id='c' value='" + opt3[index] + "''>" + opt3[index] + "<input type='radio' name='x' id='d' value='" + opt4[index] + "'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[0] + " Your Option 1 " + opt1[0] + " option 2 " + opt2[0] + " option 3 " + opt3[0] + " option 4 " + opt4[0], "UK English Female", parameters);
+        }
+
+        function show2() {
+            document.getElementById("zz").style.display = "block";
+            index = 1;
+
+            document.getElementById(index).style.background = "yellow";
+            var question2 = document.getElementById("k1").innerHTML = "Question " + question[index] + "<br><input type='radio'name='x' id='a' value='" + opt1[index] + "'' >" + opt1[index] + "<input type='radio' name='x' id='b' value='" + opt2[index] + "'' >" + opt2[index] + "<br><input type='radio' name='x' id='c' value='" + opt3[index] + "''>" + opt3[index] + "<input type='radio' name='x' id='d' value='" + opt4[index] + "'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[1] + " Your Option 1 " + opt1[1] + " option 2 " + opt2[1] + " option 3 " + opt3[1] + " option 4 " + opt4[1], "UK English Female", parameters);
+        }
+
+        function show3() {
+            document.getElementById("zz").style.display = "block";
+            index = 2;
+
+            document.getElementById(index).style.background = "yellow";
+
+            var question3 = document.getElementById("k1").innerHTML = "Question " + question[index] + "<br><input type='radio'name='x' id='a' value='" + opt1[index] + "'' >" + opt1[index] + "<input type='radio' name='x' id='b' value='" + opt2[index] + "'' >" + opt2[index] + "<br><input type='radio' name='x' id='c' value='" + opt3[index] + "''>" + opt3[index] + "<input type='radio' name='x' id='d' value='" + opt4[index] + "'>" + opt4[index];
+
+            responsiveVoice.speak("your question is " + question[2] + " Your Option 1 " + opt1[2] + " option 2 " + opt2[2] + " option 3 " + opt3[2] + " option 4 " + opt4[2], "UK English Female", parameters);
+        }
+
+        function show4() {
+            document.getElementById("zz").style.display = "block";
+            index = 3;
+            document.getElementById(index).style.background = "yellow";
+
+            var question4 = document.getElementById("k1").innerHTML = "Question " + question[index] + "<br><input type='radio'name='x' id='a' value='" + opt1[index] + "'' >" + opt1[index] + "<input type='radio' name='x' id='b' value='" + opt2[index] + "'' >" + opt2[index] + "<br><input type='radio' name='x' id='c' value='" + opt3[index] + "''>" + opt3[index] + "<input type='radio' name='x' id='d' value='" + opt4[index] + "'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[3] + " Your Option 1 " + opt1[3] + " option 2 " + opt2[3] + " option 3 " + opt3[3] + " option 4 " + opt4[3], "UK English Female", parameters);
+        }
+
+        function show5() {
+            document.getElementById("zz").style.display = "block";
+            index = 4;
+            document.getElementById(index).style.background = "yellow";
+
+            var question5 = document.getElementById("k1").innerHTML = "Question " + question[index] + "<br><input type='radio'name='x' id='a' value='" + opt1[index] + "'' >" + opt1[index] + "<input type='radio' name='x' id='b' value='" + opt2[index] + "'' >" + opt2[index] + "<br><input type='radio' name='x' id='c' value='" + opt3[index] + "''>" + opt3[index] + "<input type='radio' name='x' id='d' value='" + opt4[index] + "'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[4] + " Your Option 1 " + opt1[4] + " option 2 " + opt2[4] + " option 3 " + opt3[4] + " option 4 " + opt4[4], "UK English Female", parameters);
+        }
+
+        function show6() {
+            document.getElementById("zz").style.display = "block";
+            index = 5;
+            document.getElementById(index).style.background = "yellow";
+
+            var question6 = document.getElementById("k1").innerHTML = "Question " + question[index] + "<br><input type='radio'name='x' id='a' value='" + opt1[index] + "'' >" + opt1[index] + "<input type='radio' name='x' id='b' value='" + opt2[index] + "'' >" + opt2[index] + "<br><input type='radio' name='x' id='c' value='" + opt3[index] + "''>" + opt3[index] + "<input type='radio' name='x' id='d' value='" + opt4[index] + "'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[5] + " Your Option 1 " + opt1[5] + " option 2 " + opt2[5] + " option 3 " + opt3[5] + " option 4 " + opt4[5], "UK English Female", parameters);
+        }
+
+
+        function show7() {
+            document.getElementById("zz").style.display = "block";
+            index = 6;
+            document.getElementById(index).style.background = "yellow";
+
+            var question7 = document.getElementById("k1").innerHTML = "Question " + question[index] + "<br><input type='radio'name='x' id='a' value='" + opt1[index] + "'' >" + opt1[index] + "<input type='radio' name='x' id='b' value='" + opt2[index] + "'' >" + opt2[index] + "<br><input type='radio' name='x' id='c' value='" + opt3[index] + "''>" + opt3[index] + "<input type='radio' name='x' id='d' value='" + opt4[index] + "'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[6] + " Your Option 1 " + opt1[6] + " option 2 " + opt2[6] + " option 3 " + opt3[6] + " option 4 " + opt4[6], "UK English Female", parameters);
+        }
+
+
+        function show8() {
+            document.getElementById("zz").style.display = "block";
+            index = 7;
+            document.getElementById(index).style.background = "yellow";
+
+            var question8 = document.getElementById("k1").innerHTML = "Question " + question[index] + "<br><input type='radio'name='x' id='a' value='" + opt1[index] + "'' >" + opt1[index] + "<input type='radio' name='x' id='b' value='" + opt2[index] + "'' >" + opt2[index] + "<br><input type='radio' name='x' id='c' value='" + opt3[index] + "''>" + opt3[index] + "<input type='radio' name='x' id='d' value='" + opt4[index] + "'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[7] + " Your Option 1 " + opt1[7] + " option 2 " + opt2[7] + " option 3 " + opt3[7] + " option 4 " + opt4[7], "UK English Female", parameters);
+        }
+
+        function show9() {
+            document.getElementById("zz").style.display = "block";
+            index = 8;
+            document.getElementById(index).style.background = "yellow";
+
+            var question9 = document.getElementById("k1").innerHTML = "Question " + question[index] + "<br><input type='radio'name='x' id='a' value='" + opt1[index] + "'' >" + opt1[index] + "<input type='radio' name='x' id='b' value='" + opt2[index] + "'' >" + opt2[index] + "<br><input type='radio' name='x' id='c' value='" + opt3[index] + "''>" + opt3[index] + "<input type='radio' name='x' id='d' value='" + opt4[index] + "'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[8] + " Your Option 1 " + opt1[8] + " option 2 " + opt2[8] + " option 3 " + opt3[8] + " option 4 " + opt4[8], "UK English Female", parameters);
+        }
+
+        function show10() {
+            document.getElementById("zz").style.display = "block";
+            index = 9;
+            document.getElementById(index).style.background = "yellow";
+            var question10 = document.getElementById("k1").innerHTML = "Question " + question[index] + "<br><input type='radio'name='x' id='a' value='" + opt1[index] + "'' >" + opt1[index] + "<input type='radio' name='x' id='b' value='" + opt2[index] + "'' >" + opt2[index] + "<br><input type='radio' name='x' id='c' value='" + opt3[index] + "''>" + opt3[index] + "<input type='radio' name='x' id='d' value='" + opt4[index] + "'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[9] + " Your Option 1 " + opt1[9] + " option 2 " + opt2[9] + " option 3 " + opt3[9] + " option 4 " + opt4[9], "UK English Female", parameters);
+        }
+
+
+        var uans;
+
+        function showans() {
+
+
+            if (document.getElementById("a").checked == true) {
+                responsiveVoice.speak("You Selected Option A", "UK English Female");
+                uans = document.getElementById("a").value;
+            }
+
+            if (document.getElementById("b").checked == true) {
+                responsiveVoice.speak("You Selected Option B", "UK English Female");
+                uans = document.getElementById("b").value;
+            }
+
+            if (document.getElementById("c").checked == true) {
+                responsiveVoice.speak("You Selected Option C", "UK English Female");
+                uans = document.getElementById("c").value;
+            }
+
+            if (document.getElementById("d").checked == true) {
+                responsiveVoice.speak("You Selected Option D", "UK English Female");
+                uans = document.getElementById("d").value;
+            }
+
+
+            if (correctans[index] == uans) {
+                alert("Correct !");
+                document.getElementById(index).style.background = "green";
+                score[index] = 1;
+            }
+            else {
+                alert("incorrect");
+                document.getElementById(index).style.background = "red";
+                score[index] = 0;
+            }
+
+        }
+
+
+        function myscore() {
+            responsiveVoice.speak("Exam over.", "UK English Female");
+            responsiveVoice.speak("Your score is", "UK English Female");
+            total = 0;
+            document.getElementById("content1").innerHTML = "Exam Over";
+
+            for (i = 0; i <= 9; i++) {
+                total = total + score[i];
+            }
+
+            document.getElementById("content2").innerHTML = "Score " + total + " out of 10";
+
+        }
+
+
+        function next() {
+            index++;
+            document.getElementById(index).style.background = "yellow";
+            var question1 = document.getElementById("k1").innerHTML = "Question=" + question[index] + "<br><input type='radio' name='x' id='a' >" + opt1[index] + "<input type='radio' name='x' id='b' >" + opt2[index] + "<br><input type='radio' name='x' id='c'>" + opt3[index] + "<input type='radio'  name='x' id='d'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[index] + " Your Option 1 " + opt1[index] + " option 2 " + opt2[index] + " option 3 " + opt3[index] + " option 4 " + opt4[index], "UK English Female", parameters);
+        }
+
+        function previous() {
+            index--;
+            document.getElementById(index).style.background = "yellow";
+            var question1 = document.getElementById("k1").innerHTML = "Question=" + question[index] + "<br><input type='radio' name='x' id='a'>" + opt1[index] + "<input type='radio'  name='x' id='b'>" + opt2[index] + "<br><input type='radio' name='x' id='c'>" + opt3[index] + "<input type='radio' name='x' id='d'>" + opt4[index];
+            responsiveVoice.speak("your question is " + question[index] + " Your Option 1 " + opt1[index] + " option 2 " + opt2[index] + " option 3 " + opt3[index] + " option 4 " + opt4[index], "UK English Female", parameters);
+        }
+
+    </script>
+
+
+</ul>
+
+</html>
